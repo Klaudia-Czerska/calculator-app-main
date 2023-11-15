@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./src/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Calculator app</title>
+</head>
+<body>
+  <main class="calculator theme-1">
+    <section class="header">
+      <h1 class="header__title">calc</h1>
+      <span class="header__theme">THEME</span>
+      <article class="header__theme-switch-buttons">
+        <label for="1" id="label-1" class="header__theme-switch-label">1
+          <input id="1" type="radio" name="theme" class="header__theme-switch" checked>
+          <span class="header__theme-switch-indicator"></span>
+        </label>
+        <label for="2" id="label-2" class="header__theme-switch-label">2
+          <input id="2" type="radio" name="theme" class="header__theme-switch">
+          <span class="header__theme-switch-indicator"></span>
+        </label>
+        <label for="3" id="label-3" class="header__theme-switch-label">3
+          <input id="3" type="radio" name="theme" class="header__theme-switch">
+          <span class="header__theme-switch-indicator"></span>
+        </label>
+      </article>
+    </section>
+    <section class="calculations">
+      <span class="calculations__field">399,981</span>
+    </section>
+    <section class="buttons">
+      <button class="buttons__number">7</button>
+      <button class="buttons__number">8</button>
+      <button class="buttons__number">9</button>
+      <button class="buttons__del">DEL</button>
+      <button class="buttons__number">4</button>
+      <button class="buttons__number">5</button>
+      <button class="buttons__number">6</button>
+      <button class="buttons__operation">+</button>
+      <button class="buttons__number">1</button>
+      <button class="buttons__number">2</button>
+      <button class="buttons__number">3</button>
+      <button class="buttons__operation">-</button>
+      <button class="buttons__dot">.</button>
+      <button class="buttons__number">0</button>
+      <button class="buttons__operation">/</button>
+      <button class="buttons__operation">x</button>
+      <button class="buttons__reset">RESET</button>
+      <button class="buttons__sum">=</button>
+    </section>
+  </main>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+  <script src="./src/app.js"></script>
+</body>
+</html>

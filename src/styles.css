@@ -1,0 +1,286 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100svh;
+}
+
+.theme-1 {
+    --main-background: hsl(222, 26%, 31%);
+    --keypad-background: hsl(223, 31%, 20%);
+    --screen-background: hsl(224, 36%, 15%);
+    --del-background: hsl(225, 21%, 49%);
+    --del-background-hover: hsl(225, 42%, 72%);
+    --del-shadow: hsl(224, 28%, 35%);
+    --sum-background: hsl(6, 63%, 50%);
+    --sum-background-hover: hsl(6, 80%, 66%);
+    --sum-shadow: hsl(6, 70%, 34%);
+    --key-background: hsl(30, 25%, 89%);
+    --key-background-hover: hsl(216, 100%, 99%);
+    --key-shadow: hsl(28, 16%, 65%);
+    --header-text-color: hsl(0, 0%, 100%);
+    --key-text-color: hsl(221, 14%, 31%);
+    --del-text-color: hsl(0, 0%, 100%);
+    --sum-text-color: hsl(0, 0%, 100%);
+    --calc-text-color: hsl(0, 0%, 100%);
+}
+
+.theme-2 {
+    --main-background: hsl(0, 0%, 90%);
+    --keypad-background: hsl(0, 5%, 81%);
+    --screen-background: hsl(0, 0%, 93%);
+    --del-background:hsl(185, 42%, 37%);
+    --del-background-hover:hsl(185, 47%, 56%);
+    --del-shadow: hsl(185, 58%, 25%);
+    --sum-background: hsl(25, 98%, 40%);
+    --sum-background-hover: hsl(25, 86%, 60%);
+    --sum-shadow:hsl(25, 99%, 27%);
+    --key-background: hsl(45, 7%, 89%);
+    --key-background-hover: hsl(0, 0%, 99%);
+    --key-shadow: hsl(35, 11%, 61%);
+    --header-text-color: hsl(60, 10%, 19%);
+    --key-text-color: hsl(60, 10%, 19%);
+    --del-text-color: hsl(0, 0%, 100%);
+    --sum-text-color: hsl(0, 0%, 100%);
+    --calc-text-color: hsl(60, 10%, 19%);
+}
+
+.theme-3 {
+    --main-background: hsl(268, 75%, 9%);
+    --keypad-background: hsl(268, 71%, 12%);
+    --screen-background: hsl(268, 71%, 12%);
+    --del-background: hsl(281, 89%, 26%);
+    --del-background-hover: hsl(281, 60%, 48%);
+    --del-shadow: hsl(285, 91%, 52%);
+    --sum-background: hsl(176, 100%, 44%);
+    --sum-background-hover: hsl(176, 100%, 73%);
+    --sum-shadow: hsl(177, 92%, 70%);
+    --key-background: hsl(268, 47%, 21%);
+    --key-background-hover: hsl(268, 49%, 37%);
+    --key-shadow: hsl(290, 70%, 36%);
+    --header-text-color: hsl(52, 100%, 62%);
+    --key-text-color: hsl(52, 100%, 62%);
+    --del-text-color: hsl(0, 0%, 100%);
+    --sum-text-color: hsl(198, 20%, 13%);
+    --calc-text-color: hsl(52, 100%, 62%);
+}
+.calculator {
+    align-items: center;
+    background: var(--main-background);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-family: 'League Spartan';
+    justify-content: center;
+    padding: 1rem;
+}
+
+.header {
+    align-items: center;
+    color: var(--header-text-color);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    width: min(100%, 700px);
+}
+
+.header__theme {
+    font-size: 0.625rem;
+    margin-left: auto;
+}
+
+.header__theme-switch-buttons {
+    background: var(--keypad-background);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2rem;
+    padding: 0.5rem 0;
+}
+
+.header__theme-switch-label {
+    color: var(--header-text-color);
+    cursor: pointer;
+    margin: 0 0.5rem;
+    position: relative;
+    width: 15px;
+}
+
+.header__theme-switch-label::before {
+    color: var(--header-text-color);
+    font-size: 0.875rem;
+    height: 20px;
+    left: 0.3rem;
+    position: absolute;
+    width: 20px;
+    top: -1.5rem;
+}
+
+#label-1::before {
+    content: '1';
+}
+
+#label-2::before {
+    content: '2';
+}
+
+#label-3::before {
+    content: '3';
+}
+
+.header__theme-switch {
+    display: none;
+}
+
+.header__theme-switch-indicator {
+    background: var(--keypad-background);
+    border-radius: 50%;
+    height: 20px;
+    left: -3px;
+    position: absolute;
+    top: -3px;
+    width: 20px;
+}
+
+.header__theme-switch:checked ~ .header__theme-switch-indicator {
+    background: var(--sum-background);
+    transition: background 0.2s ease;
+}
+
+.header__theme-switch:checked ~ .header__theme-switch-indicator:hover {
+    background: var(--sum-background-hover);
+}
+
+.calculations {
+    background: var(--screen-background);
+    border-radius: 0.7rem;
+    height: 5rem;
+    margin-top: 2rem;
+    position: relative;
+    width: min(100%, 700px);
+}
+
+.calculations__field {
+    color: var(--calc-text-color);
+    font-size: 2rem;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.buttons {
+    background: var(--keypad-background);
+    border-radius: 0.7rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 1rem;
+    padding: 1rem;
+    width: min(100%, 700px);
+}
+
+.buttons button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'League Spartan';
+}
+
+.buttons__number,
+.buttons__operation,
+.buttons__dot {
+    aspect-ratio: 1;
+    background: var(--key-background);
+    box-shadow: 0 5px 1px 0 var(--key-shadow);
+    color: var(--key-text-color);
+    font-size: 1.5rem;
+    transition: background 0.2s ease;
+}
+
+.buttons__number:hover,
+.buttons__operation:hover,
+.buttons__dot:hover {
+    background: var(--key-background-hover);
+}
+
+.buttons__reset {
+    aspect-ratio: 2 / 1;
+    grid-column: span 2;
+}
+
+.buttons__reset,
+.buttons__del {
+    background: var(--del-background);
+    box-shadow: 0 5px 1px 0 var(--del-shadow);
+    color: var(--del-text-color);
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+.buttons__reset:hover,
+.buttons__del:hover {
+    background: var(--del-background-hover);
+}
+
+.buttons__sum {
+    aspect-ratio: 2 / 1;
+    background: var(--sum-background);
+    box-shadow: 0 5px 1px 0 var(--sum-shadow);
+    color: var(--sum-text-color);
+    grid-column: span 2;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+.buttons__sum:hover {
+    background: var(--sum-background-hover);
+}
+
+.attribution {
+    font-size: 11px; 
+    margin-top: auto;
+    text-align: center; 
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+@media only screen and (min-width: 600px) {
+    .calculations {
+        height: 7rem;
+    }
+
+    .calculations__field {
+        font-size: 3rem;
+    }
+    
+    .buttons {
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .buttons__number,
+    .buttons__operation,
+    .buttons__dot {
+        aspect-ratio: 2 / 1;
+        font-size: 2rem;
+    }
+
+    .buttons__reset,
+    .buttons__sum {
+        aspect-ratio: 4 / 1;
+        font-size: 2rem;
+    }
+
+    .buttons__del {
+        font-size: 2rem;
+    }
+}
