@@ -79,6 +79,7 @@ body {
     font-family: 'League Spartan';
     justify-content: center;
     padding: 1rem;
+    transition: background 0.2s ease;
 }
 
 .header {
@@ -87,6 +88,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 1rem;
+    transition: background 0.2s ease;
     width: min(100%, 700px);
 }
 
@@ -163,6 +165,7 @@ body {
     height: 5rem;
     margin-top: 2rem;
     position: relative;
+    transition: background 0.2s ease;
     width: min(100%, 700px);
 }
 
@@ -183,6 +186,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     margin-top: 1rem;
     padding: 1rem;
+    transition: background 0.2s ease;
     width: min(100%, 700px);
 }
 
