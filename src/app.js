@@ -1,4 +1,4 @@
-import checkIfIncludes from "./utils.js";
+import { checkIfIncludes, result } from "./utils.js";
 
 const theme = document.querySelectorAll('.header__theme-switch');
 const main = document.querySelector('.calculator');
@@ -9,6 +9,7 @@ const dot = document.querySelector('.buttons__dot');
 const del = document.querySelector('.buttons__del');
 const reset = document.querySelector('.buttons__reset');
 const sum = document.querySelector('.buttons__sum');
+let isSum = false;
 
 theme.forEach((button) => {
     button.addEventListener('click', () => {
@@ -24,8 +25,9 @@ theme.forEach((button) => {
 NUMBERS.forEach((number) => {
     number.addEventListener('click', (e) => {
         e.preventDefault();
-        if (calculations.innerText === '0') {
+        if (calculations.innerText === '0' || isSum === true) {
             calculations.innerText = number.innerText;
+            isSum = false;
         } else {
             calculations.innerText += number.innerText;
         }
@@ -60,19 +62,19 @@ OPERATIONS.forEach((operation) => {
         e.preventDefault();
         if (!checkIfIncludes(OPERATIONS, calculations.innerText)) {
             calculations.innerText += operation.innerText;
+            isSum = false;
         }
     })
 })
 
 sum.addEventListener('click', (e) => {
     e.preventDefault();
-    if (checkIfIncludes(OPERATIONS, calculations.innerText)) {
-        let operation = checkIfIncludes(OPERATIONS, calculations.innerText);
-
-        switch (operation) {
-            case '+':
-                let no = calculations.innerText.split('+');
-                calculations.innerText = Number(no[0]) + Number(no[1]);
-        }
-    }
+    // if (checkIfIncludes(OPERATIONS, calculations.innerText)) {
+    //     let operation = checkIfIncludes(OPERATIONS, calculations.innerText);
+    //     const no = calculations.innerText.split(`${operation}`);
+    //     calculations.innerText = calculate(no[0], operation, no[1]);
+    //     isSum = true;
+    // }
+    calculations.innerText = result(OPERATIONS, calculations.innerText);
+    isSum = true;
 })
