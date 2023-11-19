@@ -10,6 +10,7 @@ const del = document.querySelector('.buttons__del');
 const reset = document.querySelector('.buttons__reset');
 const sum = document.querySelector('.buttons__sum');
 let isSum = false;
+const dividedByZero = "You can't divide by 0!";
 
 theme.forEach((button) => {
     button.addEventListener('click', () => {
@@ -28,6 +29,8 @@ NUMBERS.forEach((number) => {
         if (calculations.innerText === '0' || isSum === true) {
             calculations.innerText = number.innerText;
             isSum = false;
+        } else if (checkIfIncludes(OPERATIONS, calculations.innerText.slice(-2))) {
+            calculations.innerText += " " + number.innerText;
         } else {
             calculations.innerText += number.innerText;
         }
@@ -36,7 +39,7 @@ NUMBERS.forEach((number) => {
 
 dot.addEventListener('click', (e) => {
     e.preventDefault();
-    if (!calculations.innerText.includes('.') && !checkIfIncludes(OPERATIONS, calculations.innerText.slice(-1))) {
+    if (!calculations.innerText.includes('.') && !checkIfIncludes(OPERATIONS, calculations.innerText.slice(-1)) && calculations.innerText !== dividedByZero) {
         calculations.innerText += dot.innerText;
     }
 })
@@ -46,7 +49,7 @@ del.addEventListener('click', (e) => {
     if (calculations.innerText !== '0') {
         if (calculations.innerText.length === 1) {
             calculations.innerText = '0';
-        } else {
+        } else if (calculations.innerText !== dividedByZero) {
             calculations.innerText = calculations.innerText.slice(0, -1);
         }
     }
@@ -60,21 +63,20 @@ reset.addEventListener('click', (e) => {
 OPERATIONS.forEach((operation) => {
     operation.addEventListener('click', (e) => {
         e.preventDefault();
-        if (!checkIfIncludes(OPERATIONS, calculations.innerText)) {
-            calculations.innerText += operation.innerText;
+        if (!checkIfIncludes(OPERATIONS, calculations.innerText) && calculations.innerText !== dividedByZero) {
+            calculations.innerText += " " + operation.innerText;
             isSum = false;
+        } else if (calculations.innerText.split(' ').length === 3) {
+            calculations.innerText = result(OPERATIONS, calculations.innerText);
+            calculations.innerText += " " + operation.innerText;
         }
     })
 })
 
 sum.addEventListener('click', (e) => {
     e.preventDefault();
-    // if (checkIfIncludes(OPERATIONS, calculations.innerText)) {
-    //     let operation = checkIfIncludes(OPERATIONS, calculations.innerText);
-    //     const no = calculations.innerText.split(`${operation}`);
-    //     calculations.innerText = calculate(no[0], operation, no[1]);
-    //     isSum = true;
-    // }
-    calculations.innerText = result(OPERATIONS, calculations.innerText);
-    isSum = true;
+    if (calculations.innerText.split(' ').length === 3) {
+        calculations.innerText = result(OPERATIONS, calculations.innerText);
+        isSum = true;
+    }
 })

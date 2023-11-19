@@ -16,6 +16,9 @@ const calculate = (first, operation, second) => {
         case '-':
             return firstNumber - secondNumber;
         case '/':
+            if (secondNumber === 0) {
+                return "You can't divide by 0!";
+            }
             return firstNumber / secondNumber;
         case 'x':
             return firstNumber * secondNumber;
@@ -25,9 +28,8 @@ const calculate = (first, operation, second) => {
 
 const result = (op, calc) => {
     if (checkIfIncludes(op, calc)) {
-        let operation = checkIfIncludes(op, calc);
-        const no = calc.split(`${operation}`);
-        return calculate(no[0], operation, no[1]);
+        const no = calc.split(' ');
+        return calculate(no[0], no[1], no[2]);
     }
 }
 
