@@ -1,4 +1,4 @@
-import { checkIfIncludes, result } from "./utils.js";
+import { checkIfIncludes, result, isLastCharOperation } from "./utils.js";
 
 const theme = document.querySelectorAll('.header__theme-switch');
 const main = document.querySelector('.calculator');
@@ -39,7 +39,7 @@ NUMBERS.forEach((number) => {
 
 dot.addEventListener('click', (e) => {
     e.preventDefault();
-    if (!calculations.innerText.includes('.') && !checkIfIncludes(OPERATIONS, calculations.innerText.slice(-1)) && calculations.innerText !== dividedByZero) {
+    if (!calculations.innerText.includes('.') && !isLastCharOperation(OPERATIONS, calculations) && calculations.innerText !== dividedByZero) {
         calculations.innerText += dot.innerText;
     }
 })
@@ -68,6 +68,9 @@ OPERATIONS.forEach((operation) => {
             isSum = false;
         } else if (calculations.innerText.split(' ').length === 3) {
             calculations.innerText = result(OPERATIONS, calculations.innerText);
+            calculations.innerText += " " + operation.innerText;
+        } else if (isLastCharOperation(OPERATIONS, calculations)) {
+            calculations.innerText = calculations.innerText.slice(0, -1);
             calculations.innerText += " " + operation.innerText;
         }
     })

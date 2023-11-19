@@ -33,6 +33,11 @@ const result = (op, calc) => {
     }
 }
 
+const isLastCharOperation = (op, calc) => {
+    if (calc.innerText.split(' ').length === 2 && checkIfIncludes(op, calc.innerText)) {
+        return true;
+    }
+}
 
 
-export { checkIfIncludes, calculate, result };
+export { checkIfIncludes, calculate, result, isLastCharOperation };
